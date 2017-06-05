@@ -1,0 +1,50 @@
+.camera {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+.image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: green;
+  flex: none;
+  height: 0;
+  padding-bottom: 30%;
+  width: 40%;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1em;
+  position: relative;
+}
+.name {
+  color: #235aab;
+  font-size: 1.875em;
+  line-height: 1;
+  margin-bottom: .5em;
+  padding-right: 40px;
+  word-break: break-word;
+}
+.description {
+  font-size: 1em;
+  padding-right: 40px;
+}
+.description--hidden {
+  display: none;
+}
+
+.totalViews {
+  font-size: 1em;
+  margin-top: auto;
+}
+
+@media screen and (min-width: 480px) {
+  .name {
+    padding-right: 60px;
+  }
+  .description {
+    padding-right: 60px;
+  }
+}

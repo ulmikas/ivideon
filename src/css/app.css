@@ -1,0 +1,30 @@
+.app {
+  border: 1px solid #ccc;
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 15px;
+}
+
+.header h1 {
+  font-size: 2em;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.footer {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+@media screen and (min-width: 480px) {
+  .app {
+    font-size: 16px;
+  }
+}
