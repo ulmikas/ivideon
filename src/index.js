@@ -5,11 +5,11 @@ import 'normalize.css';
 import favoriteCamsStore from './stores';
 import App from './components/App';
 
-import { fetchCameras } from './actions';
+// import { fetchCameras } from './actions';
 
 const rootElement = document.querySelector('.app');
 
-favoriteCamsStore.dispatch(fetchCameras());
+// favoriteCamsStore.dispatch(fetchCameras());
 
 render(
   <Provider store={favoriteCamsStore}>
