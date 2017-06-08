@@ -20,13 +20,12 @@ const Camera = ({ camera_name, description, total_views, uin, favorite }) => (
 
 Camera.propTypes = {
   camera_name: PropTypes.string.isRequired,
-  total_views: PropTypes.number,
-  favorite: PropTypes.arrayOf(PropTypes.number),
+  total_views: PropTypes.number.isRequired,
+  favorite: PropTypes.objectOf(PropTypes.object),
 };
 
 Camera.defaultProps = {
-  total_views: 0,
-  favorite: [],
+  favorite: {},
 };
 
 export default Camera;

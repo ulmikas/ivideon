@@ -10,10 +10,10 @@ const CamerasList = ({ isFetching, items, favorite }) => (
     {/*sdfas {isFetching}, {items.map(i => <p key={i.uin}>{i.uin}</p>)}*/}
     {!isFetching &&
       <ul className={styles.list}>
-        { items.map(i => (
+        { Object.keys(items).map(i => (
           <Camera
-            key={i.uin}
-            {...i}
+            key={items[i].uin}
+            {...items[i]}
             favorite={favorite}
           />))
         }
@@ -24,14 +24,14 @@ const CamerasList = ({ isFetching, items, favorite }) => (
 
 CamerasList.propTypes = {
   isFetching: PropTypes.bool,
-  items: PropTypes.arrayOf(PropTypes.object),
-  favorite: PropTypes.arrayOf(PropTypes.number),
+  items: PropTypes.objectOf(PropTypes.object),
+  favorite: PropTypes.objectOf(PropTypes.object),
 };
 
 CamerasList.defaultProps = {
   isFetching: false,
-  items: [],
-  favorite: [],
+  items: {},
+  favorite: {},
 };
 
 export default CamerasList;

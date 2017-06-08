@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { addToFavorite, removeFromFavorite } from '../actions';
 import FavoriteButton from '../components/FavoriteButton';
 
-const isFavorite = (favs, uin) => favs.indexOf(uin) > -1;
+const isFavorite = (favs, uin) => Object.prototype.hasOwnProperty.call(favs, uin);
 
 const mapStateToProps = (state, ownProps) => ({
   favorite: isFavorite(state.favorite, ownProps.uin),

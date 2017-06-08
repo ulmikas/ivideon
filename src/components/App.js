@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import Footer from './Footer';
+import Footer from '../containers/Footer';
 import FavoritesCameras from '../containers/FavoritesCameras';
 import styles from '../css/app.css';
 

@@ -5,10 +5,10 @@ import favoriteCams from '../reducers';
 const initialState = {
   cameras: {
     isFetching: false,
-    items: [],
+    items: {},
     nextSeed: '',
   },
-  favorite: [],
+  favorite: {},
 };
 
 export default createStore(favoriteCams, initialState, applyMiddleware(thunk));
