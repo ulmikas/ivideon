@@ -11,4 +11,5 @@ const initialState = {
   favorite: {},
 };
 
-export default createStore(favoriteCams, initialState, applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export default createStore(favoriteCams, initialState, composeEnhancers(applyMiddleware(thunk)));

@@ -4,12 +4,17 @@ import FavoriteButton from '../components/FavoriteButton';
 
 const isFavorite = (favs, uin) => Object.prototype.hasOwnProperty.call(favs, uin);
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+  return ({
+    cams: state.cameras.items,
   favorite: isFavorite(state.favorite, ownProps.uin),
   favs: state.favorite,
 });
+}
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => {
+  console.log('fl', ownProps);
+  return ({
   onClick: () => {
     if (isFavorite(ownProps.favorite, ownProps.uin)) {
       dispatch(removeFromFavorite(ownProps.uin));
@@ -18,7 +23,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     }
   },
 });
-
+}
 const FavoriteLink = connect(
   mapStateToProps,
   mapDispatchToProps,

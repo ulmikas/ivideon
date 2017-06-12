@@ -2,15 +2,30 @@
   display: flex;
   border-bottom: 1px solid #ccc;
 }
+.cameraView {
+  list-style: none;
+  border: 1px solid #ccc;
+}
 .image {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background: green;
   flex: none;
   height: 0;
+  overflow: hidden;
   padding-bottom: 30%;
   width: 40%;
+  position: relative;
+}
+.image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.imageView {
+  position: relative;
+}
+
+.imageView img {
+  max-width: 100%;
 }
 .info {
   display: flex;
@@ -23,21 +38,42 @@
   color: #235aab;
   font-size: 1.875em;
   line-height: 1;
-  margin-bottom: .5em;
+  margin-bottom: .2em;
   padding-right: 40px;
   word-break: break-word;
 }
 .description {
-  font-size: 1em;
+  font-size: 1.2em;
   padding-right: 40px;
+  margin-bottom: 1.5em;
 }
 .description--hidden {
   display: none;
 }
 
 .totalViews {
+  color: #999;
   font-size: 1em;
   margin-top: auto;
+}
+.close {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 36px;
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  transition: transform 200ms ease-out;
+}
+.close:focus {
+  outline: none;
+}
+.close:hover {
+  transform: scale(1.2);
+  transform-origin: 50% 50%;
 }
 
 @media screen and (min-width: 480px) {

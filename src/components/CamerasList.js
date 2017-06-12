@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styles from '../css/cameras.css';
 
 // import { fetchCameras } from '../actions';
-import Camera from './Camera';
+// import Camera from './Camera';
+import CameraItem from '../containers/CameraItem';
 
 const CamerasList = ({ isFetching, items, favorite }) => (
   <div>
@@ -11,9 +12,9 @@ const CamerasList = ({ isFetching, items, favorite }) => (
     {!isFetching &&
       <ul className={styles.list}>
         { Object.keys(items).map(i => (
-          <Camera
-            key={items[i].uin}
-            {...items[i]}
+          <CameraItem
+            key={i}
+            camera={items[i]}
             favorite={favorite}
           />))
         }
@@ -21,6 +22,7 @@ const CamerasList = ({ isFetching, items, favorite }) => (
     }
   </div>
 );
+
 
 CamerasList.propTypes = {
   isFetching: PropTypes.bool,

@@ -1,12 +1,31 @@
 import { combineReducers } from 'redux';
-import { ADD_TO_FAVORITE, REMOVE_FROM_FAVORITE, RECEIVE_CAMERAS, REQUEST_CAMERAS } from '../actions';
+import { ADD_TO_FAVORITE, REMOVE_FROM_FAVORITE, RECEIVE_CAMERAS, RECEIVE_FAVORITE, REQUEST_CAMERAS } from '../actions';
 
-const favorite = (state = [], action) => {
+const favorite = (state = {}, action) => {
   switch (action.type) {
-    case ADD_TO_FAVORITE:
-      return { ...state, [action.uin]: action };
-    case REMOVE_FROM_FAVORITE:
-      return [...state.filter(c => c !== action.uin)];
+    case ADD_TO_FAVORITE: {
+      const newState = { ...state, [action.camera.uin]: action.camera };
+      window.localStorage.setItem('favorite', JSON.stringify(newState));
+      return newState;
+    }
+    case REMOVE_FROM_FAVORITE: {
+      const newState = {
+        ...Object.keys(state).reduce((akk, c) => {
+          if (c !== action.uin) {
+            akk[c] = state[c];
+          }
+          return akk;
+        }, {}),
+      };
+      window.localStorage.setItem('favorite', JSON.stringify(newState));
+      return newState;
+    }
+    case RECEIVE_FAVORITE: {
+      return {
+        ...state,
+        ...action.json,
+      };
+    }
     default:
       return state;
   }
@@ -21,7 +40,7 @@ const cameras = (state = {}, action) => {
         items: {
           ...state.items,
           ...action.json.cameras.reduce((akk, c) => {
-            akk[c.uin] = c;
+            akk[c.uin.toString()] = c;
             return akk;
           }, {}),
         },
@@ -32,6 +51,21 @@ const cameras = (state = {}, action) => {
         ...state,
         isFetching: true,
       };
+    case RECEIVE_FAVORITE: {
+      return {
+        ...state,
+        items: {
+          ...{},
+          ...action.json,
+          ...Object.keys(state.items).reduce((akk, c) => {
+            if (!action.json.hasOwnProperty(c)) {
+              akk[c] = state.items[c];
+            }
+            return akk;
+          }, {}),
+        },
+      };
+    }
     default:
       return state;
   }

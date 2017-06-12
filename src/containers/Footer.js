@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCameras } from '../actions';
 import styles from '../css/footer.css';
@@ -11,12 +11,9 @@ const Footer = ({nextSeed, onMoreClick}) => (
   </div>
 );
 
-const mapStateToProps = (state) => {
-  console.log('mapSF ', state);
-  return {
-    nextSeed: state.cameras.nextSeed,
-  };
-};
+const mapStateToProps = state => ({
+  nextSeed: state.cameras.nextSeed,
+});
 
 const mapDispatchToProps = dispatch => ({
   onMoreClick: (seed) => {

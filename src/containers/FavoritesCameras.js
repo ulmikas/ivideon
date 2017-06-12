@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCameras } from '../actions';
+import { fetchCameras, fetchFavorite } from '../actions';
 import CamerasList from '../components/CamerasList';
 
 class FavoritesCameras extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchCameras());
+    dispatch(fetchFavorite());
   }
 
   render() {
