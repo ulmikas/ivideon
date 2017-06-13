@@ -19,7 +19,7 @@ export const addToFavorite = camera => ({
 
 export const removeFromFavorite = uin => ({
   type: REMOVE_FROM_FAVORITE,
-  uin: uin,
+  uin: uin.toString(),
 });
 
 export const receiveFavorite = json => ({
