@@ -10,32 +10,15 @@ class CameraItem extends Component {
 
     this.state = {
       preview: false,
-      favorite: this.props.favorite.hasOwnProperty(this.props.camera.uin),
-      image: `https://streaming.ivideon.com/preview/live?server=${this.props.camera.server}&camera=${this.props.camera.camera}`,
-      rand: Date.now(),
+      favorite: props.favorite.hasOwnProperty(props.camera.uin),
     };
 
-    this.toggleView = this.toggleView.bind(this);
-    this.onFavCLick = this.onFavCLick.bind(this);
-    this.getImage = this.getImage.bind(this);
+    // this.toggleView = this.toggleView.bind(this);
+    // this.onFavCLick = this.onFavCLick.bind(this);
+    // this.getImage = this.getImage.bind(this);
   }
 
-
-
-  componentDidMount() {
-    // this.getImage();
-  }
-
-  componentWillReceiveProps(nextProps) {
-   console.log('!!', nextProps);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('!!1', nextProps, nextState);
-    return true;
-  }
-
-  onFavCLick() {
+  onFavCLick = () => {
     if (this.state.favorite) {
       this.props.dispatch(removeFromFavorite(this.props.camera.uin));
     } else {
@@ -46,25 +29,7 @@ class CameraItem extends Component {
     });
   }
 
-  getImage() {
-    const img = new Image();
-    img.src = `https://streaming.ivideon.com/preview/live?server=${this.props.camera.server}&camera=${this.props.camera.camera}`;
-    img.onload = () => {
-      this.setState({
-        image: img.src,
-        rand: Date.now(),
-      });
-      console.log(this.state);
-    };
-    img.onerror = () => {
-      this.setState({
-        image: <div>error</div>,
-        rand: Date.now(),
-      });
-    };
-  }
-
-  toggleView() {
+  toggleView = () => {
     this.setState({
       preview: !this.state.preview,
     });
@@ -79,7 +44,7 @@ class CameraItem extends Component {
 
   render() {
     return (
-      <Camera {...this.props.camera} img={this.state.image} rand={this.state.rand} toggleView={this.toggleView} onFavCLick={this.onFavCLick} preview={this.state.preview} favorite={this.state.favorite} />
+      <Camera {...this.props.camera} toggleView={this.toggleView} onFavCLick={this.onFavCLick} preview={this.state.preview} favorite={this.state.favorite} />
     );
   }
 }
