@@ -1,4 +1,30 @@
 .footer {
   border-top: 1px solid #ccc;
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.footer__top,
+.footer__more {
+  background: #235aab;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 8px 30px;
+}
+.footer__more {
+  background: #15962e;
+}
+
+.footer__top:hover {
+  background: #033a8b;
+}
+.footer__more:hover {
+  background: #05760e;
+}
+.footer__top:focus,
+.footer__more:focus {
+  outline: none;
 }

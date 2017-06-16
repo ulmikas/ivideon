@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { fetchCameras } from '../actions';
 import styles from '../css/footer.css';
 
-const Footer = ({nextSeed, onMoreClick}) => (
+const Footer = ({ nextSeed, onMoreClick }) => (
   <div className={styles.footer}>
-    <button onClick={() => { window.scrollTo(0, 0); }}>TOP</button>
-    <button onClick={e => { onMoreClick(nextSeed); }}>MORE</button>
-    {nextSeed}
+    <button className={styles.footer__top} onClick={() => { window.scrollTo(0, 0); }}>&uarr;&nbsp;TOP</button>
+    <button className={styles.footer__more} onClick={() => { onMoreClick(nextSeed); }}>MORE</button>
   </div>
 );
 
@@ -20,5 +20,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(fetchCameras(seed));
   },
 });
+
+Footer.propTypes = {
+  nextSeed: PropTypes.string.isRequired,
+  onMoreClick: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

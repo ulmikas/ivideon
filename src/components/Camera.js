@@ -11,7 +11,11 @@ const Camera = ({ camera_name, description, total_views, preview, camera, server
   ?
     <li className={(preview) ? styles.cameraSelected : styles.camera}>
       <div onClick={toggleView} className={styles.image}>
-        <img src={`https://streaming.ivideon.com/preview/live?server=${server}&camera=${camera}`} alt="" />
+        <img
+          style={{ width: Math.max(100, 75 * width / height) + '%' }}
+          src={`https://streaming.ivideon.com/preview/live?server=${server}&camera=${camera}`}
+          alt=""
+        />
       </div>
       <div className={styles.info}>
         <div className={styles.name}>{ camera_name }</div>
@@ -27,7 +31,6 @@ const Camera = ({ camera_name, description, total_views, preview, camera, server
     <li className={styles.cameraView}>
       <div className={styles.imageView}>
         <Image imgsrc={`https://streaming.ivideon.com/preview/live?server=${server}&camera=${camera}`} />
-        {/*<img alt="" src={`https://streaming.ivideon.com/preview/live?server=${server}&camera=${camera}`} />*/}
         <button onClick={toggleView} className={styles.close}>&times;</button>
       </div>
       <div className={styles.info}>
