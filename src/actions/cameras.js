@@ -29,7 +29,7 @@ export const fetchCameras = seed => (dispatch) => {
   const curSeed = (seed) ? `?seed=${seed}` : '';
   dispatch(requestCameras(seed));
   return axios
-    .get(`http://api.ivideon.com/tv/cameras${curSeed}`)
+    .get(`https://api.ivideon.com/tv/cameras${curSeed}`)
     .then(res => (res.data.success
         ? dispatch(receiveCameras(res.data.response))
         : dispatch(failureCameras(res.data.response.code_alias))))
