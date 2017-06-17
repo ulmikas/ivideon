@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from './Header';
 import Footer from '../containers/Footer';
-import FavoritesCameras from '../containers/FavoritesCameras';
+import AllCamerasList from '../containers/AllCamerasList';
 import styles from '../css/app.css';
 
 const App = () => (
   <div className={styles.app}>
     <Header />
-    <FavoritesCameras />
+    <AllCamerasList />
     <Footer />
   </div>
 );

@@ -1,3 +1,7 @@
+.camerasList {
+  margin: 0;
+  padding: 0;
+}
 .camera {
   display: flex;
   border-bottom: 1px solid #ccc;

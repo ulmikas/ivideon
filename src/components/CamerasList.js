@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../css/cameras.css';
-
-// import { fetchCameras } from '../actions';
-// import Camera from './Camera';
+import styles from '../css/camera.css';
 import CameraItem from '../containers/CameraItem';
 
 const CamerasList = ({ isFetching, items, favorite }) => (
   <div>
-    {/*sdfas {isFetching}, {items.map(i => <p key={i.uin}>{i.uin}</p>)}*/}
     {!isFetching &&
-      <ul className={styles.list}>
+      <ul className={styles.camerasList}>
         { Object.keys(items).map(i => (
           <CameraItem
             key={i}
@@ -22,7 +18,6 @@ const CamerasList = ({ isFetching, items, favorite }) => (
     }
   </div>
 );
-
 
 CamerasList.propTypes = {
   isFetching: PropTypes.bool,

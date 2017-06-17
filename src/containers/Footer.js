@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCameras } from '../actions';
+import { fetchCameras } from '../actions/cameras';
 import styles from '../css/footer.css';
 
 const Footer = ({ nextSeed, onMoreClick }) => (

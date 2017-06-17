@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from '../css/image.css';
+import NoImage from '../components/NoImage';
 
 class Image extends Component {
   constructor(props) {
@@ -13,14 +13,8 @@ class Image extends Component {
 
   componentWillUnmount() {
     if (this.timeout) {
-      clearInterval(this.timeout);
+      clearTimeout(this.timeout);
     }
-  }
-
-  refreshImage = () => {
-    this.setState({
-      image: `${this.props.imgsrc}&time=${Date.now()}`,
-    });
   }
 
   onLoad = () => {
@@ -35,8 +29,14 @@ class Image extends Component {
       error: true,
     });
     if (this.timeout) {
-      clearInterval(this.timeout);
+      clearTimeout(this.timeout);
     }
+  }
+
+  refreshImage = () => {
+    this.setState({
+      image: `${this.props.imgsrc}&time=${Date.now()}`,
+    });
   }
 
   render() {
@@ -44,10 +44,7 @@ class Image extends Component {
       <div>
         {(this.state.error)
           ?
-            <div className={styles.error}>
-              <div className={styles.error__msg}>Camera is offline</div>
-              <button className={styles.error__btn} onClick={this.refreshImage}>Refresh</button>
-            </div>
+            <NoImage onClick={this.refreshImage} />
           : ''
         }
         <img onLoad={this.onLoad} onError={this.onError} src={this.state.image} alt="1" style={{ display: (this.state.error) ? 'none' : 'block' }} />

@@ -1,20 +1,33 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ADD_TO_FAVORITE, REMOVE_FROM_FAVORITE } from '../actions';
+import { fetchCameras, fetchFavorite } from '../actions/cameras';
 import CamerasList from '../components/CamerasList';
 
+class AllCamerasList extends Component {
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchCameras());
+    dispatch(fetchFavorite());
+  }
+
+  render() {
+    return (
+      <CamerasList {...this.props} />
+    );
+  }
+}
+
+AllCamerasList.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
-  isFetching: state.isFetching,
+  isFetching: state.cameras.isFetching,
   items: state.cameras.items,
+  favorite: state.favorite,
 });
 
-// const mapDispatchToProps = ({
-//   onClick: addLabel,
-//   onClick2: removeLabel,
-// });
-
-const AllCamerasList = connect(
+export default connect(
   mapStateToProps,
-  // mapDispatchToProps
-)(CamerasList);
-
-export default AllCamerasList;
+)(AllCamerasList);
