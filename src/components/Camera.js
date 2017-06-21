@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../css/camera.css';
+import styles from './camera.css';
 import Image from '../containers/Image';
 import FavBtn from './FavoriteButton';
 

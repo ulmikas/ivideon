@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../css/camera.css';
 import CameraItem from '../containers/CameraItem';
 
 const CamerasList = ({ isFetching, items, favorite }) => (
   <div>
     {!isFetching &&
-      <ul className={styles.camerasList}>
+      <ul>
         { Object.keys(items).map(i => (
           <CameraItem
             key={i}

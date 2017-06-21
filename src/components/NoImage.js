@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../css/image.css';
+import styles from './image.css';
 
 const NoImage = ({ onClick }) => (
   <div className={styles.error}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../css/header.css';
+import styles from './header.css';
 
 const Header = () => (
   <header className={styles.header} >
