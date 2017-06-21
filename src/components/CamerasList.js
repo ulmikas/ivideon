@@ -5,13 +5,13 @@ import styles from './cameraList.css';
 
 const CamerasList = ({ isFetching, items, favorite }) => (
   <div>
-    {(isFetching)
+    {(!isFetching)
     ?
-      <div className="styles.loadung">
+      <div className={styles.loading}>
         loading
       </div>
     :
-      <div className="styles.camerasList">
+      <div className={styles.camerasList}>
         { Object.keys(items).map(i => (
           <CameraConnector
             key={i}

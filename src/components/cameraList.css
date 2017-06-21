@@ -1,0 +1,38 @@
+.loading {
+  background: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 100px;
+}
+.loading::after {
+  animation: loader 1.5s infinite linear;
+  content: '...';
+  display: inline-block;
+  position: absolute;
+}
+
+.camerasList {}
+
+@keyframes loader {
+  0% {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+  100% {
+    content: '';
+  }
+}
