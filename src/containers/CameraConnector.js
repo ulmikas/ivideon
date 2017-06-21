@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addToFavorite, removeFromFavorite } from '../actions/favorite';
 import Camera from '../components/Camera';
 
-class CameraItem extends Component {
+class CameraConnector extends Component {
   constructor(props) {
     super(props);
 
@@ -43,7 +43,7 @@ const mapStateToProps = state => ({
 });
 
 
-CameraItem.propTypes = {
+CameraConnector.propTypes = {
   dispatch: PropTypes.func.isRequired,
   favorite: PropTypes.objectOf(PropTypes.object).isRequired,
   camera: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -51,4 +51,4 @@ CameraItem.propTypes = {
 
 export default connect(
   mapStateToProps,
-)(CameraItem);
+)(CameraConnector);
