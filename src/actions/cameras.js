@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { getCameras, getFromStorage } from '../api/api';
 
 export const RECEIVE_CAMERAS = 'RECEIVE_CAMERAS';
 export const REQUEST_CAMERAS = 'REQUEST_CAMERAS';
@@ -27,15 +27,14 @@ export const receiveFavorite = json => ({
 
 export const fetchCameras = seed => (dispatch) => {
   const curSeed = (seed) ? `?seed=${seed}` : '';
+  const fetchSuccess = res => (res.data.success
+      ? dispatch(receiveCameras(res.data.response))
+      : dispatch(failureCameras(res.data.response.code_alias)));
+  const fetchFail = error => dispatch(failureCameras(error.message));
   dispatch(requestCameras(seed));
-  return axios
-    .get(`https://api.ivideon.com/tv/cameras${curSeed}`)
-    .then(res => (res.data.success
-        ? dispatch(receiveCameras(res.data.response))
-        : dispatch(failureCameras(res.data.response.code_alias))))
-    .catch(error => dispatch(failureCameras(error.message)));
+  return getCameras(curSeed, fetchSuccess, fetchFail);
 };
 
 export const fetchFavorite = () => (dispatch) => {
-  dispatch(receiveFavorite(JSON.parse(window.localStorage.getItem('favorite'))));
+  dispatch(receiveFavorite(getFromStorage()));
 };
