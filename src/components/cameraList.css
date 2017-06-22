@@ -17,8 +17,6 @@
   position: absolute;
 }
 
-.camerasList {}
-
 @keyframes loader {
   0% {
     content: '';

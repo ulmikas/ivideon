@@ -15,6 +15,8 @@ class Image extends Component {
     if (this.timeout) {
       clearTimeout(this.timeout);
     }
+    this.onLoad = null;
+    this.onError = null;
   }
 
   onLoad = () => {

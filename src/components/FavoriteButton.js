@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './favbutton.css';
+import styles from './favoriteButton.css';
 
 const FavoriteButton = ({ favorite, onClick }) => (
   <button type="button" className={styles.favorite} onClick={onClick}>

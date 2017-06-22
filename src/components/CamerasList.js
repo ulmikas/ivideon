@@ -5,7 +5,7 @@ import styles from './cameraList.css';
 
 const CamerasList = ({ isFetching, items, favorite }) => (
   <div>
-    {(!isFetching)
+    {(isFetching)
     ?
       <div className={styles.loading}>
         loading
