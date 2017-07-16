@@ -6,7 +6,7 @@ export const addToFavorite = camera => ({
   camera,
 });
 
-export const removeFromFavorite = uin => ({
+export const removeFromFavorite = camera => ({
   type: REMOVE_FROM_FAVORITE,
-  uin: uin.toString(),
+  camera,
 });

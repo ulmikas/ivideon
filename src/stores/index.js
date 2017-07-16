@@ -5,10 +5,14 @@ import mainReducer from '../reducers';
 const initialState = {
   cameras: {
     isFetching: false,
+    itemsIds: [],
     items: {},
     nextSeed: '',
   },
-  favorite: {},
+  favorite: {
+    itemsIds: [],
+    items: {},
+  },
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

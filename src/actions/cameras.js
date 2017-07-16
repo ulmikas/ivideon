@@ -1,3 +1,4 @@
+import { v4 } from 'node-uuid';
 import { getCameras, getFromStorage } from '../api/api';
 
 export const RECEIVE_CAMERAS = 'RECEIVE_CAMERAS';
@@ -5,9 +6,20 @@ export const REQUEST_CAMERAS = 'REQUEST_CAMERAS';
 export const FAILURE_CAMERAS = 'FAILURE_CAMERAS';
 export const RECEIVE_FAVORITE = 'RECEIVE_FAVORITE';
 
+const normalizeCameras = json => json.reduce((prev, cur) => {
+  const cameraId = v4();
+  return { ...prev,
+    itemsIds: (prev.itemsIds) ? [...prev.itemsIds, cameraId] : [...[], cameraId],
+    items: (prev.items)
+      ? { ...prev.items, [cameraId]: { id: cameraId, ...cur } }
+      : { ...{}, [cameraId]: { id: cameraId, ...cur } },
+  };
+}, {});
+
 export const receiveCameras = json => ({
   type: RECEIVE_CAMERAS,
-  json,
+  cameras: normalizeCameras(json.cameras),
+  seeds: json.seeds,
 });
 
 export const requestCameras = seed => ({

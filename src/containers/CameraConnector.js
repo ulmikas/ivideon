@@ -10,13 +10,13 @@ class CameraConnector extends Component {
 
     this.state = {
       preview: false,
-      favorite: !!props.favorite[props.camera.uin],
+      favorite: props.favorite.itemsIds.indexOf(props.camera.id) > -1,
     };
   }
 
   onFavCLick = () => {
     if (this.state.favorite) {
-      this.props.dispatch(removeFromFavorite(this.props.camera.uin));
+      this.props.dispatch(removeFromFavorite(this.props.camera));
     } else {
       this.props.dispatch(addToFavorite(this.props.camera));
     }
@@ -45,7 +45,7 @@ const mapStateToProps = state => ({
 
 CameraConnector.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  favorite: PropTypes.objectOf(PropTypes.object).isRequired,
+  favorite: PropTypes.objectOf(PropTypes.any).isRequired,
   camera: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 

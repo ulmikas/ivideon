@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCameras, fetchFavorite } from '../actions/cameras';
 import CamerasList from '../components/CamerasList';
+import LoadingOverlay from '../components/LoadingOverlay';
+
 
 class AllCamerasList extends Component {
   componentWillMount() {
@@ -13,7 +15,10 @@ class AllCamerasList extends Component {
 
   render() {
     return (
-      <CamerasList {...this.props} />
+      <div>
+        {(this.props.isFetching) ? <LoadingOverlay /> : ''}
+        <CamerasList {...this.props} />
+      </div>
     );
   }
 }
@@ -22,9 +27,11 @@ AllCamerasList.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
+const getCamerasList = cameras => ((cameras.itemsIds) ? cameras.itemsIds.map(i => cameras.items[i]) : []);
+
 const mapStateToProps = state => ({
   isFetching: state.cameras.isFetching,
-  items: state.cameras.items,
+  cameras: getCamerasList(state.cameras),
   favorite: state.favorite,
 });
 

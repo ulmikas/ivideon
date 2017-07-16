@@ -6,14 +6,9 @@ const cameras = (state = {}, action) => {
       return {
         ...state,
         isFetching: false,
-        items: {
-          ...state.items,
-          ...action.json.cameras.reduce((akk, c) => {
-            akk[c.uin.toString()] = c;
-            return akk;
-          }, {}),
-        },
-        nextSeed: action.json.seeds.next,
+        itemsIds: [...state.itemsIds, ...action.cameras.itemsIds],
+        items: { ...state.items, ...action.cameras.items },
+        nextSeed: action.seeds.next,
       };
     case REQUEST_CAMERAS:
       return {
@@ -21,19 +16,12 @@ const cameras = (state = {}, action) => {
         isFetching: true,
       };
     case RECEIVE_FAVORITE: {
-      return {
+      const newState = {
         ...state,
-        items: {
-          ...{},
-          ...action.json,
-          ...Object.keys(state.items).reduce((akk, c) => {
-            if (!action.json[c]) {
-              akk[c] = state.items[c];
-            }
-            return akk;
-          }, {}),
-        },
+        itemsIds: [...action.json.itemsIds, ...state.itemsIds],
+        items: { ...action.json.items, ...state.items },
       };
+      return newState;
     }
     default:
       return state;
